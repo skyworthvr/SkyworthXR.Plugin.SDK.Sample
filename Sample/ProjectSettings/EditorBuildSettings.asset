@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Skyworth Interaction Toolkit/Interaction/Sample/UI Sample.unity
+    guid: 8d0ffb26c5d1ace4d848b34ab8d33580
+  m_configObjects:
+    Unity.XR.Skyworth.SkyworthSettings: {fileID: 11400000, guid: e766ad5f1c3a47a41b5ed6ee306f533c,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ca743dd0186625548906351b7119bb48,
+      type: 2}
