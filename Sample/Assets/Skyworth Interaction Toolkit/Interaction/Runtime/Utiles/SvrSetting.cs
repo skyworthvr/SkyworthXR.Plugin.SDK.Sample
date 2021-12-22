@@ -95,7 +95,7 @@ namespace Svr
         {
             get
             {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
                 string ness = getProperty(HANDEDNESSKEY, "2");
                 int handed = int.Parse(ness);
                 return (SvrHandedness)handed;
@@ -108,7 +108,7 @@ namespace Svr
         {
             get
             {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
                 string ness = getProperty(CONTROLLERTYPE, "1");
                 int handed = int.Parse(ness);
                 return (SvrControllerType)handed;
@@ -121,7 +121,7 @@ namespace Svr
         {
             get
             {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
                 string ness = getProperty(SHOWFPS, "false");
                 bool fps = false;
                 bool.TryParse(ness,out fps);
@@ -135,7 +135,7 @@ namespace Svr
         {
             get
             {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
                 string ness = getProperty(NOLOHANDEDNESSKEY, "2");
                 int handed = int.Parse(ness);
                 return (SvrNoloHandedness)handed;
@@ -148,7 +148,7 @@ namespace Svr
         {
             get
             {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
                 string antis = getProperty(ANTIALIASING, "4");
                 //SvrLog.Log("System antiAliasing is "+ antis);
                 switch (antis)
@@ -165,7 +165,7 @@ namespace Svr
                         return 4;
                 }
 #else
-            return QualitySettings.antiAliasing;
+                return QualitySettings.antiAliasing;
 #endif
             }
         }
@@ -173,7 +173,7 @@ namespace Svr
         {
             get
             {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
                 string scalestr = getProperty(SCREENSCALE,"1.2");
                 //SvrLog.Log("System stereoScreenScale is " + scalestr);
                 float scale = 1.2f;
@@ -201,7 +201,7 @@ namespace Svr
         private static jvalue zero_jvalue;
         static SvrSetting()
         {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             jc = new AndroidJavaClass("android.os.SystemProperties");
             string product = getProperty("ro.build.product", "");
             svrLogLevel = (SvrLogLevel)int.Parse(getProperty(SVRLOGLEVEL, "3"));
@@ -245,8 +245,8 @@ namespace Svr
         }
         public static string getProperty(string key, string def)
         {
-            string result = "";
-#if UNITY_ANDROID
+            string result = def;
+#if UNITY_ANDROID && !UNITY_EDITOR
             UnityEngine.Profiling.Profiler.BeginSample(string.Format("getProperty:{0}",key));
             result = jc.CallStatic<string>("get", key, def);
             UnityEngine.Profiling.Profiler.EndSample();
@@ -263,7 +263,7 @@ namespace Svr
             }
             currentTicks = ticks;
             int result = 0;
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             UnityEngine.Profiling.Profiler.BeginSample(string.Format("getIntProperty:{0}", key));
             result = jc.CallStatic<int>("getInt", key, def);
             UnityEngine.Profiling.Profiler.EndSample();
@@ -273,7 +273,7 @@ namespace Svr
 
         public static void setProperty(string key, string value)
         {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             UnityEngine.Profiling.Profiler.BeginSample("setProperty");
             jc.CallStatic("set", key, value);
             UnityEngine.Profiling.Profiler.EndSample();
