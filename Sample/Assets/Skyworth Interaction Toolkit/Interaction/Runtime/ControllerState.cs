@@ -26,7 +26,8 @@ namespace Gvr.Internal
     public class ControllerState
     {
         internal SvrControllerIndex svrControllerIndex = SvrControllerIndex.SVR_CONTROLLER_INDEX_RIGHT;
-        public GvrConnectionState connectionState = GvrConnectionState.Disconnected;
+        public bool Awaked = false;
+        public bool isValid = false;
         internal GvrControllerApiStatus apiStatus = GvrControllerApiStatus.Unavailable;
         private Quaternion mOrientation = Quaternion.identity;
         internal Quaternion orientation
@@ -103,11 +104,11 @@ namespace Gvr.Internal
         {
             svrControllerIndex = index;
         }
-        public GvrConnectionState GetConnectionState() { return connectionState; }
+        //public GvrConnectionState GetConnectionState() { return connectionState; }
         public string GetDeviceName() { return deviceName; }
         public void CopyFrom(ControllerState other)
         {
-            connectionState = other.connectionState;
+            //connectionState = other.connectionState;
             apiStatus = other.apiStatus;
             orientation = other.orientation;
             gyro = other.gyro;
@@ -174,7 +175,8 @@ namespace Gvr.Internal
             PreTouched = Touched;
             PreKeyCode = KeyCode;
             KeyCode = 0;
-            connectionState = GvrConnectionState.Disconnected;
+            //connectionState = GvrConnectionState.Disconnected;
+            Awaked = false;
             deviceManufacturer = 0;
             position = Vector3.zero;
         }

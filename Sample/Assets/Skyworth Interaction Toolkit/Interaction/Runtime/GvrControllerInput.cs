@@ -177,25 +177,13 @@ public class GvrControllerInput : MonoBehaviour
     {
         get
         {
-            if (controllerStateRight.connectionState == GvrConnectionState.Connected)
+            if ((mSvrState & SvrControllerState.RightController) != 0)
             {
-                if (controllerStateRight.deviceManufacturer == DeviceManufacturer.Nolo_6dof)
-                {
-                    if (Svr.SvrSetting.NoloHandedness == Svr.SvrNoloHandedness.Right)
-                        return controllerStateRight;
-                }
-                else
-                    return controllerStateRight;
+                return controllerStateRight;
             }
-            if (controllerStateLeft.connectionState == GvrConnectionState.Connected)
+            if ((mSvrState & SvrControllerState.LeftController) != 0)
             {
-                if (controllerStateLeft.deviceManufacturer == DeviceManufacturer.Nolo_6dof)
-                {
-                    if (Svr.SvrSetting.NoloHandedness == Svr.SvrNoloHandedness.Left)
-                        return controllerStateLeft;
-                }
-                else
-                    return controllerStateLeft;
+                return controllerStateLeft;
             }
             return controllerStateHead;
         }
@@ -242,19 +230,19 @@ public class GvrControllerInput : MonoBehaviour
     }
 
     /// Returns the controller's current connection state.
-    [Obsolete("Use SvrState")]
-    public static GvrConnectionState State
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return GvrConnectionState.Error;
-            }
-            instance.Update();
-            return instance.controllerState.connectionState;
-        }
-    }
+    //[Obsolete("Use SvrState")]
+    //public static GvrConnectionState State
+    //{
+    //    get
+    //    {
+    //        if (instance == null)
+    //        {
+    //            return GvrConnectionState.Error;
+    //        }
+    //        instance.Update();
+    //        return instance.controllerState.connectionState;
+    //    }
+    //}
     private static SvrControllerState mSvrState = SvrControllerState.None;
     public static SvrControllerState SvrState
     {
@@ -918,23 +906,23 @@ public class GvrControllerInput : MonoBehaviour
         }
     }
     /// If State == GvrConnectionState.Error, this contains details about the error.
-    public static string ErrorDetails
-    {
-        get
-        {
-            if (instance != null)
-            {
-                instance.Update();
-                return instance.controllerState.connectionState == GvrConnectionState.Error ?
-                  instance.controllerState.errorDetails : "";
-            }
-            else
-            {
-                return "GvrController instance not found in scene. It may be missing, or it might "
-                  + "not have initialized yet.";
-            }
-        }
-    }
+    //public static string ErrorDetails
+    //{
+    //    get
+    //    {
+    //        if (instance != null)
+    //        {
+    //            instance.Update();
+    //            return instance.controllerState.connectionState == GvrConnectionState.Error ?
+    //              instance.controllerState.errorDetails : "";
+    //        }
+    //        else
+    //        {
+    //            return "GvrController instance not found in scene. It may be missing, or it might "
+    //              + "not have initialized yet.";
+    //        }
+    //    }
+    //}
 
     // Returns the GVR C library controller state pointer (gvr_controller_state*).
     public static IntPtr StatePtr
@@ -1153,7 +1141,7 @@ public class GvrControllerInput : MonoBehaviour
     {
 
         svrControllerState |= SvrControllerState.Head;
-        if (controllerStateLeft.connectionState == GvrConnectionState.Connected)
+        if (controllerStateLeft.isValid && controllerStateLeft.Awaked)
         {
             if ((svrControllerState & SvrControllerState.LeftController) == 0)
             {
@@ -1171,7 +1159,7 @@ public class GvrControllerInput : MonoBehaviour
             }
         }
 
-        if (controllerStateRight.connectionState == GvrConnectionState.Connected)
+        if (controllerStateRight.isValid && controllerStateRight.Awaked)
         {
             if ((svrControllerState & SvrControllerState.RightController) == 0)
             {

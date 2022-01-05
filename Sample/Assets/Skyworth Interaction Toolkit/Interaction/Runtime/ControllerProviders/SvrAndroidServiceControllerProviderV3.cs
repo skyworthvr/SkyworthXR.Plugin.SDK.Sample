@@ -187,9 +187,13 @@ public class SvrAndroidServiceControllerProviderV3 : IControllerProvider
         {
             outState.orientation = HeadrotationValue;
         }
-        if (inputDevice.TryGetFeatureValue(new InputFeatureUsage<uint>("ConnectionStatue"), out uint connectionState))
+        if (inputDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("ControllerAwaked"), out bool awaked))
         {
-            outState.connectionState = (GvrConnectionState)connectionState;
+            outState.Awaked = awaked;
+        }
+        else
+        {
+            outState.Awaked = true;
         }
 
         SvrControllerUpdateState(outState, inputDevice);
@@ -197,7 +201,7 @@ public class SvrAndroidServiceControllerProviderV3 : IControllerProvider
 
     private void SvrControllerUpdateState(ControllerState outState, InputDevice inputDevice)
     {
-        if (outState.connectionState == GvrConnectionState.Connected)
+        if (outState.Awaked)
         {
             if (inputDevice.TryGetFeatureValue(new InputFeatureUsage<Vector2>("Primary2DAxis"), out Vector2 touch))
             {
@@ -337,6 +341,9 @@ public class SvrAndroidServiceControllerProviderV3 : IControllerProvider
         InputDevice right_hand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
         InputDevice left_hand = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
         InputDevice Head = InputDevices.GetDeviceAtXRNode(XRNode.CenterEye);
+        controllerStateHead.isValid = Head.isValid;
+        controllerStateRight.isValid = right_hand.isValid;
+        controllerStateLeft.isValid = left_hand.isValid;
         if (Head.isValid)
         {
             //controllerStateHead.connectionState = GvrConnectionState.Connected;

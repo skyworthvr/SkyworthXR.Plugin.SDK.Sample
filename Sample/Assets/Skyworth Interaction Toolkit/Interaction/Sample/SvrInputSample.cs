@@ -17,7 +17,8 @@ public class SvrInputSample : MonoBehaviour
     public GameObject HMD_VolumeUpButton;
     public GameObject HMD_VolumeDownButton;
     [Header("RightController")]
-    public Text R_Connected;
+    public GameObject R_Connected;
+    public GameObject R_Awaked;
     public Text R_position;
     public Text R_rotation;
     public Text R_battery;
@@ -79,9 +80,8 @@ public class SvrInputSample : MonoBehaviour
     }
     private void UpdateRightControllerDevice()
     {
-        R_Connected.text = GvrControllerInput.GetControllerState(SvrControllerState.RightController).connectionState.ToString();
-        if (GvrControllerInput.GetControllerState(SvrControllerState.RightController).connectionState != GvrConnectionState.Connected)
-            return;
+        R_Connected.SetActive(GvrControllerInput.GetControllerState(SvrControllerState.RightController).isValid);
+        R_Awaked.SetActive(GvrControllerInput.GetControllerState(SvrControllerState.RightController).Awaked);
         R_position.text = GvrControllerInput.GetPosition(SvrControllerState.RightController).ToString();
         R_rotation.text = GvrControllerInput.GetOrientation(SvrControllerState.RightController).ToString();
         R_battery.text = GvrControllerInput.GetBatteryLevel(SvrControllerState.RightController).ToString();
@@ -92,91 +92,19 @@ public class SvrInputSample : MonoBehaviour
         R_Touch.text = GvrControllerInput.TouchPos.ToString();
         R_Touched.SetActive(GvrControllerInput.IsTouching);
         R_DeviceName.text = GvrControllerInput.GetControllerState(SvrControllerState.RightController).GetDeviceName();
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<Vector3>("DevicePosition"), out Vector3 position)) 
-        //{
-        //    R_position.text = position.ToString();
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<Quaternion>("DeviceRotation"), out Quaternion rotation))
-        //{
-        //    R_rotation.text = rotation.ToString();
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<float>("BatteryLevel"), out float battery))
-        //{
-        //    R_battery.text = battery.ToString();
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<float>("Trigger"), out float triggervalue))
-        //{
-        //    R_trigger.text = triggervalue.ToString();
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("PrimaryButton"), out bool clickvalue))
-        //{
-        //    R_ClickButton.SetActive(clickvalue);
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("MenuButton"), out bool backvalue))
-        //{
-        //    R_AppButton.SetActive(backvalue);
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("HomeButton"), out bool homevalue))
-        //{
-        //    R_HomeButton.SetActive(homevalue);
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("TriggerButton"), out bool triggerbuttonvalue))
-        //{
-        //    R_TriggerButton.SetActive(triggerbuttonvalue);
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<Vector2>("Primary2DAxis"), out Vector2 touchvalue))
-        //{
-        //    R_Touch.text = touchvalue.ToString();
-        //}
-        //if (RightControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("PrimaryTouch"), out bool touchedvalue))
-        //{
-        //    R_Touched.SetActive(touchedvalue);
-        //}
     }
 
     private void UpdateLeftControllerDevice()
     {
-        InputDevice LeftControllerDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
-        L_Connected.SetActive(LeftControllerDevice.isValid);
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<Vector3>("DevicePosition"), out Vector3 position))
-        {
-            L_position.text = position.ToString();
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<Quaternion>("DeviceRotation"), out Quaternion rotation))
-        {
-            L_rotation.text = rotation.ToString();
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<float>("BatteryLevel"), out float battery))
-        {
-            L_battery.text = battery.ToString();
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<float>("Trigger"), out float triggervalue))
-        {
-            L_trigger.text = triggervalue.ToString();
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("PrimaryButton"), out bool clickvalue))
-        {
-            L_ClickButton.SetActive(clickvalue);
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("MenuButton"), out bool backvalue))
-        {
-            L_AppButton.SetActive(backvalue);
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("HomeButton"), out bool homevalue))
-        {
-            L_HomeButton.SetActive(homevalue);
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("TriggerButton"), out bool triggerbuttonvalue))
-        {
-            L_TriggerButton.SetActive(triggerbuttonvalue);
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<Vector2>("Primary2DAxis"), out Vector2 touchvalue))
-        {
-            L_Touch.text = touchvalue.ToString();
-        }
-        if (LeftControllerDevice.TryGetFeatureValue(new InputFeatureUsage<bool>("PrimaryTouch"), out bool touchedvalue))
-        {
-            L_Touched.SetActive(touchedvalue);
-        }
+        L_Connected.SetActive(GvrControllerInput.GetControllerState(SvrControllerState.RightController).isValid);
+        L_position.text = GvrControllerInput.GetPosition(SvrControllerState.RightController).ToString();
+        L_rotation.text = GvrControllerInput.GetOrientation(SvrControllerState.RightController).ToString();
+        L_battery.text = GvrControllerInput.GetBatteryLevel(SvrControllerState.RightController).ToString();
+        L_ClickButton.SetActive(GvrControllerInput.ClickButton);
+        L_AppButton.SetActive(GvrControllerInput.AppButton);
+        L_HomeButton.SetActive(GvrControllerInput.HomeButtonState);
+        L_TriggerButton.SetActive(GvrControllerInput.TriggerButton);
+        L_Touch.text = GvrControllerInput.TouchPos.ToString();
+        L_Touched.SetActive(GvrControllerInput.IsTouching);
     }
 }
