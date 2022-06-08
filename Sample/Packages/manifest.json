@@ -38,6 +38,6 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.unity.xr.skyworth": "file:../SkyworthXR Plugin SDK.tgz"
+    "com.unity.xr.skyworth": "file:../com.unity.xr.skyworth-2.0.0.tgz"
   }
 }

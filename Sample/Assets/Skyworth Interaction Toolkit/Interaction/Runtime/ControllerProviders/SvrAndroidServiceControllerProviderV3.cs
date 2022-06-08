@@ -277,29 +277,13 @@ public class SvrAndroidServiceControllerProviderV3 : IControllerProvider
             }
             outState.errorDetails = "";
 
-            if (inputDevice.TryGetFeatureValue(new InputFeatureUsage<uint>("DeviceManufacturer"), out uint deviceManu))
+            if (inputDevice.manufacturer == "SkywortXr")
             {
-                switch (deviceManu)
-                {
-                    case 0:
-                        outState.deviceManufacturer = DeviceManufacturer.I3VR;
-                        break;
-                    case 1:
-                        outState.deviceManufacturer = DeviceManufacturer.Nolo_6dof;
-                        break;
-                    case 2:
-                        outState.deviceManufacturer = DeviceManufacturer.Nolo_3dof;
-                        break;
-                    case 3:
-                        outState.deviceManufacturer = DeviceManufacturer.REALMAX;
-                        break;
-                    case 4:
-                        outState.deviceManufacturer = DeviceManufacturer.SIMULATION;
-                        break;
-                    default:
-                        break;
-                }
-
+                outState.deviceManufacturer = DeviceManufacturer.Svr_6dof;
+            }
+            else 
+            {
+                outState.deviceManufacturer = DeviceManufacturer.Svr_3dof;
             }
         }
 

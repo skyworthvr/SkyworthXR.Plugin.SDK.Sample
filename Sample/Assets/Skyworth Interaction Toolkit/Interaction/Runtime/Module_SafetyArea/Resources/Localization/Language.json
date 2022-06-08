@@ -1,0 +1,191 @@
+{
+  "english": [
+    {
+      "id": 10081,
+      "value": "Reset"
+    },
+    {
+      "id": 106018,
+      "value": "Confirm the ground height"
+    },
+    {
+      "id": 106020,
+      "value": "Please place the host or handle on the ground to confirm the current ground height"
+    },
+    {
+      "id": 106019,
+      "value": "Set up the game area"
+    },
+    {
+      "id": 106021,
+      "value": "Please use the handle to point to the ground and hold down the trigger button to delimit the game area.For better experience, it is recommended to delimit a game area of at least 2*2 meters"
+    },
+    {
+      "id": 106022,
+      "value": "Switch to in-situ area"
+    },
+    {
+      "id": 106023,
+      "value": "The play area is too small"
+    },
+    {
+      "id": 106024,
+      "value": "The current designated area is less than the minimum game area of 1*1 meter. Please re-deline or switch to the original area."
+    },
+    {
+      "id": 106027,
+      "value": "Redraw"
+    },
+    {
+      "id": 106025,
+      "value": "Confirm in-situ boundary"
+    },
+    {
+      "id": 106026,
+      "value": "Please make sure that there are no other objects obstructing the boundary of the original place, and you are injured when placed for an immersive game experience."
+    },
+    {
+      "id": 10092,
+      "value": "Confirm"
+    },
+    {
+      "id": 106031,
+      "value": "Confirm protected area"
+    },
+    {
+      "id": 106029,
+      "value": "Leave the borderary"
+    },
+    {
+      "id": 106030,
+      "value": "You have left the protective boundary, please return or redraw the boundary."
+    },
+    {
+      "id": 106028,
+      "value": "Delimit the game area"
+    },
+    {
+      "id": 106037,
+      "value": "Can't find protection zone"
+    },
+    {
+      "id": 106038,
+      "value": "Create protection zone"
+    },
+    {
+      "id": 106033,
+      "value": "Confirm play area"
+    },
+    {
+      "id": 106034,
+      "value": "The current area has met the scope requirements of the game area"
+    },
+    {
+      "id": 106035,
+      "value": "Redraw the game area"
+    },
+    {
+      "id": 106036,
+      "value": "Please confirm that there are no obstructing objects in the area to prevent injuries during the immersive gaming experience"
+    },
+    {
+      "id": 106039,
+      "value": "You have left the protective boundary. Please take off the headset and return, or create a new protective boundary."
+    }
+
+  ],
+  "chinese": [
+    {
+      "id": 10081,
+      "value": "重置"
+    },
+    {
+      "id": 106018,
+      "value": "确认地面高度"
+    },
+    {
+      "id": 106020,
+      "value": "请将主机或手柄放置于地面以确认当前地面高度"
+    },
+    {
+      "id": 106019,
+      "value": "设置游戏区域"
+    },
+    {
+      "id": 106021,
+      "value": "请使用手柄指向地面并按住扳机键为游戏区域划定边界。为了更好的体验游戏，建议划定至少2*2米的游戏区域"
+    },
+    {
+      "id": 106022,
+      "value": "切换原地区域"
+    },
+    {
+      "id": 106023,
+      "value": "游戏区域过小"
+    },
+    {
+      "id": 106024,
+      "value": "当前划定区域小于1*1米的最小游戏区域，请重新划定或切换原地区域。"
+    },
+    {
+      "id": 106027,
+      "value": "重划"
+    },
+    {
+      "id": 106025,
+      "value": "确认原地边界"
+    },
+    {
+      "id": 106026,
+      "value": "请确认原地边界内没有其他物品遮挡，防止进行沉浸式游戏体验时受伤。"
+    },
+    {
+      "id": 10092,
+      "value": "确认"
+    },
+    {
+      "id": 106031,
+      "value": "确认防护区域"
+    },
+    {
+      "id": 106029,
+      "value": "离开边界"
+    },
+    {
+      "id": 106030,
+      "value": "您已离开防护边界，请返回或重新创建边界"
+    },
+    {
+      "id": 106028,
+      "value": "划定游戏区域"
+    },
+    {
+      "id": 106037,
+      "value": "找不到防护区域"
+    },
+    {
+      "id": 106038,
+      "value": "创建防护边界"
+    },
+    {
+      "id": 106033,
+      "value": "确定游戏区域"
+    },
+    {
+      "id": 106034,
+      "value": "当前区域已满足游戏区域的范围要求"
+    },
+    {
+      "id": 106035,
+      "value": "重划游戏区域"
+    },
+    {
+      "id": 106036,
+      "value": "请确认区域内无遮挡物品，以防止进行沉浸式游戏体验时受伤"
+    },
+    {
+      "id": 106039,
+      "value": "您已离开防护边界，请摘下头显并返回，或创建新的防护边界。"
+    }
+  ]
+}

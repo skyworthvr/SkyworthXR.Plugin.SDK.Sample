@@ -1,8 +1,10 @@
 {
     "name": "Skyworth.Interaction.Editor",
+    "rootNamespace": "",
     "references": [
         "Skyworth.Interaction",
-        "UnityEngine.SpatialTracking"
+        "UnityEngine.SpatialTracking",
+        "Unity.XR.CoreUtils"
     ],
     "includePlatforms": [
         "Editor"

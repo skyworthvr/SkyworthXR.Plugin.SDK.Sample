@@ -68,11 +68,8 @@ public enum SvrControllerState
 public enum DeviceManufacturer
 { 
     None = 0,
-    I3VR = 0x0001,
-    Nolo_6dof = 0x0002,
-    Nolo_3dof = 0x0004,
-    REALMAX = 0x0008,
-    SIMULATION = 0x0010
+    Svr_6dof = 0x0002,
+    Svr_3dof = 0x0004
 }
 
 /// Represents the API status of the current controller state.
@@ -1146,7 +1143,7 @@ public class GvrControllerInput : MonoBehaviour
             if ((svrControllerState & SvrControllerState.LeftController) == 0)
             {
                 if ((svrControllerState & SvrControllerState.RightController) == 0)
-                    Svr.SvrSetting.SetNoloHandedness(Svr.SvrNoloHandedness.Left);
+                    Svr.SvrSetting.SetNoloHandedness(Svr.Svr6DOFHandedness.Left);
                 svrControllerState |= SvrControllerState.LeftController;
             }
         }
@@ -1154,7 +1151,7 @@ public class GvrControllerInput : MonoBehaviour
         {
             if ((svrControllerState & SvrControllerState.LeftController) != 0)
             {
-                Svr.SvrSetting.SetNoloHandedness(Svr.SvrNoloHandedness.Right);
+                Svr.SvrSetting.SetNoloHandedness(Svr.Svr6DOFHandedness.Right);
                 svrControllerState ^= SvrControllerState.LeftController;
             }
         }
@@ -1164,14 +1161,14 @@ public class GvrControllerInput : MonoBehaviour
             if ((svrControllerState & SvrControllerState.RightController) == 0)
             {
                 svrControllerState |= SvrControllerState.RightController;
-                Svr.SvrSetting.SetNoloHandedness(Svr.SvrNoloHandedness.Right);
+                Svr.SvrSetting.SetNoloHandedness(Svr.Svr6DOFHandedness.Right);
             }
         }
         else
         {
             if ((svrControllerState & SvrControllerState.RightController) != 0)
             {
-                Svr.SvrSetting.SetNoloHandedness(Svr.SvrNoloHandedness.Left);
+                Svr.SvrSetting.SetNoloHandedness(Svr.Svr6DOFHandedness.Left);
                 svrControllerState ^= SvrControllerState.RightController;
             }
         }

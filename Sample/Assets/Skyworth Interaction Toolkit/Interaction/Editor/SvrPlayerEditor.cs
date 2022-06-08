@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SpatialTracking;
 using UnityEngine.UI;
+using Skyworth.Interaction.SafetyArea;
+using Unity.XR.CoreUtils;
 
 public class SvrPlayerEditor
 {
@@ -16,28 +18,16 @@ public class SvrPlayerEditor
         player.transform.rotation = Quaternion.identity;
         player.transform.localScale = Vector3.one;
 
-        GenerateMainCamera(player.transform);
+        GenrateCamera(player.transform);
+
         GenrateGvr(player.transform);
+
+        GenrateSafetyArea(player.transform);
+
         GenrateController(player.transform);
 
         Selection.activeGameObject = player;
     }
-
-    [MenuItem("Skyworth Interaction Tools/XR Gameobject/Player Controller", false, 11)]
-    static void GeneratePlayerController()
-    {
-        GameObject player = ObjectFactory.CreateGameObject("PlayerController");
-        player.transform.position = Vector3.zero;
-        player.transform.rotation = Quaternion.identity;
-        player.transform.localScale = Vector3.one;
-        player.AddComponent<SvrPlayerController>();
-        GenerateMainCamera(player.transform);
-        GenrateGvr(player.transform);
-        GenrateController(player.transform);
-
-        Selection.activeGameObject = player;
-    }
-
     static void GenrateController(Transform player) 
     {
         GameObject LeftHand = new GameObject("LeftHand Controller", typeof(TrackedPoseDriver));
@@ -48,8 +38,8 @@ public class SvrPlayerEditor
         var LeftDriver = LeftHand.GetComponent<TrackedPoseDriver>();
         LeftDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRController, TrackedPoseDriver.TrackedPose.LeftPose);
 
-        GameObject NoloLeftController = GameObject.Instantiate(Resources.Load<GameObject>("Prefab/NoloLeftController"), LeftHand.transform, false);
-        NoloLeftController.name = "NoloLeftController";
+        GameObject NoloLeftController = GameObject.Instantiate(Resources.Load<GameObject>("Prefab/Svr6dofControllerLeft"), LeftHand.transform, false);
+        NoloLeftController.name = "Svr6dofControllerLeft";
 
 
         GameObject RightHand = new GameObject("RightHand Controller", typeof(TrackedPoseDriver));
@@ -59,10 +49,18 @@ public class SvrPlayerEditor
         RightHand.transform.localScale = Vector3.one;
         var RightDriver = RightHand.GetComponent<TrackedPoseDriver>();
         RightDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRController, TrackedPoseDriver.TrackedPose.RightPose);
-        GameObject NoloRightController = GameObject.Instantiate(Resources.Load<GameObject>("Prefab/NoloRightController"), RightHand.transform, false);
-        NoloRightController.name = "NoloRightController";
+        GameObject NoloRightController = GameObject.Instantiate(Resources.Load<GameObject>("Prefab/Svr6dofControllerRight"), RightHand.transform, false);
+        NoloRightController.name = "Svr6dofControllerRight";
         GameObject SvrControllerPointer = GameObject.Instantiate(Resources.Load<GameObject>("Prefab/SvrControllerPointer"), RightHand.transform, false);
         SvrControllerPointer.name = "SvrControllerPointer";
+    }
+    static void GenrateSafetyArea(Transform player) 
+    {
+        GameObject SafetyAreaManager = new GameObject("SafetyAreaManager", typeof(SafetyAreaManager));
+        SafetyAreaManager.transform.parent = player.transform;
+        SafetyAreaManager.transform.position = Vector3.zero;
+        SafetyAreaManager.transform.rotation = Quaternion.identity;
+        SafetyAreaManager.transform.localScale = Vector3.one;
     }
     static void GenrateGvr(Transform player) 
     {
@@ -84,7 +82,7 @@ public class SvrPlayerEditor
         GvrEditorEmulator.transform.rotation = Quaternion.identity;
         GvrEditorEmulator.transform.localScale = Vector3.one;
     }
-    static void GenerateMainCamera(Transform player) 
+    static void GenrateCamera(Transform player) 
     {
         Camera mainCamera = Camera.main;
         bool isHaveGvrReticlePointer = false;
@@ -125,9 +123,9 @@ public class SvrPlayerEditor
         {
             mainCamera.gameObject.AddComponent<GvrPointerPhysicsRaycaster>();
         }
+        mainCamera.nearClipPlane = 0.01f;
     }
-
-    [MenuItem("Skyworth Interaction Tools/XR Gameobject/UI Canvas", false, 12)]
+    [MenuItem("Skyworth Interaction Tools/XR Gameobject/UI Canvas", false, 10)]
     static void GenerateCanvas()
     {
         GameObject canvas = ObjectFactory.CreateGameObject("Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GvrPointerGraphicRaycaster));

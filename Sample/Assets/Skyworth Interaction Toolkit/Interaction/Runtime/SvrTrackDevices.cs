@@ -7,8 +7,10 @@ public class SvrTrackDevices : MonoBehaviour
     public DeviceManufacturer deviceManufacturer;
     public SvrControllerState controllerState;
     private GvrBasePointer mPointer;
+    public static List<SvrTrackDevices> trackDevices = new List<SvrTrackDevices>();
     private void Awake()
     {
+        trackDevices.Add(this);
         GvrControllerInput.OnConterollerChanged += GvrControllerInput_OnConterollerChanged;
         GvrControllerInput_OnConterollerChanged(GvrControllerInput.SvrState, GvrControllerInput.SvrState);
         GvrControllerInput.OnGvrPointerEnable += GvrControllerInput_OnGvrPointerEnable;
@@ -28,9 +30,9 @@ public class SvrTrackDevices : MonoBehaviour
         if ((state & controllerState) != 0 && (GvrControllerInput.GetControllerState(controllerState).deviceManufacturer & deviceManufacturer) != 0)
         {
             gameObject.SetActive(true);
-            switch (Svr.SvrSetting.NoloHandedness)
+            switch (Svr.SvrSetting.NHandedness)
             {
-                case Svr.SvrNoloHandedness.Left:
+                case Svr.Svr6DOFHandedness.Left:
                     if (controllerState == SvrControllerState.LeftController)
                     {
                         mPointer.gameObject.SetActive(true);
@@ -45,7 +47,7 @@ public class SvrTrackDevices : MonoBehaviour
                         }
                     }
                     break;
-                case Svr.SvrNoloHandedness.Right:
+                case Svr.Svr6DOFHandedness.Right:
                     if (controllerState == SvrControllerState.RightController)
                     {
                         mPointer.gameObject.SetActive(true);

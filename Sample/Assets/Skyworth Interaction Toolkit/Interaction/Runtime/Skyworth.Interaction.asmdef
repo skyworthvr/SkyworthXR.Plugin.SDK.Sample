@@ -1,3 +1,16 @@
-﻿{
-	"name": "Skyworth.Interaction"
+{
+    "name": "Skyworth.Interaction",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1232a3c8f0273d34b9d232dc21013067"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

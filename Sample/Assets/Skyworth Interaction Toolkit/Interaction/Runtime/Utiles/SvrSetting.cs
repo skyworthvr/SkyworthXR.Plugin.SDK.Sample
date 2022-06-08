@@ -18,7 +18,7 @@ namespace Svr
         Ximmers = 1,
         Nolo = 2
     }
-    public enum SvrNoloHandedness
+    public enum Svr6DOFHandedness
     {
         Left = 1, Right = 2
     }
@@ -66,7 +66,7 @@ namespace Svr
         private readonly static string SVRCONTROLLERSERVICE_V2 = "com.ssnwt.vr.server";
         private static SvrHandedness mSvrHandedness = SvrHandedness.Right;
         private static SvrControllerType mSvrController = SvrControllerType.Ximmers;
-        private static SvrNoloHandedness mSvrNOloHandedness = SvrNoloHandedness.Right;
+        private static Svr6DOFHandedness mSvrNOloHandedness = Svr6DOFHandedness.Right;
         public static SvrLogLevel svrLogLevel = SvrLogLevel.None;
         private static int noloconnect = 0;
 
@@ -131,16 +131,16 @@ namespace Svr
 #endif
             }
         }
-        public static SvrNoloHandedness NoloHandedness
+        public static Svr6DOFHandedness NHandedness
         {
             get
             {
 #if UNITY_ANDROID && !UNITY_EDITOR
                 string ness = getProperty(NOLOHANDEDNESSKEY, "2");
                 int handed = int.Parse(ness);
-                return (SvrNoloHandedness)handed;
+                return (Svr6DOFHandedness)handed;
 #else
-                return SvrNoloHandedness.Right;
+                return Svr6DOFHandedness.Right;
 #endif
             }
         }
@@ -287,7 +287,7 @@ namespace Svr
             setProperty(HANDEDNESSKEY, handedness.ToString());
         }
 
-        public static void SetNoloHandedness(SvrNoloHandedness Handedness)
+        public static void SetNoloHandedness(Svr6DOFHandedness Handedness)
         {
             mSvrNOloHandedness = Handedness;
             int handedness = (int)Handedness;
