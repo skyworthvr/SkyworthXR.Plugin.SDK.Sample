@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Skyworth Interaction Toolkit/Interaction/Sample/PlayerController.unity
-    guid: 9825c7386a0d5484894b01be87882b10
+    path: Assets/S1.unity
+    guid: 95de02b337d1d3f4991c098972d36102
+  - enabled: 1
+    path: Assets/S2.unity
+    guid: ce1c80a9379580a4d90653b17e0e94f9
   m_configObjects:
     Unity.XR.Skyworth.SkyworthSettings: {fileID: 11400000, guid: e766ad5f1c3a47a41b5ed6ee306f533c,
       type: 2}
